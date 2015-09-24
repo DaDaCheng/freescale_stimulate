@@ -1,6 +1,9 @@
 __author__ = 'Freasy'
 
 from numpy import *
+import math
+import pylab
+#from pylab import *
 
 set_printoptions(threshold='nan')
 
@@ -14,13 +17,13 @@ def getConnection(a,b):
 
     return 0
 
-dataMat = zeros((100,100))
+dataMat = zeros((10000,10000))
 
-edges = zeros(100)
+edges = zeros(10000)
 
-edgesRate = zeros(100)
+edgesRate = zeros(10000)
 
-for i in range(5,100):
+for i in range(5,10000):
 
     if i == 5 :
 
@@ -31,18 +34,16 @@ for i in range(5,100):
         getConnection(5,3)
         getConnection(5,4)
         edgesRate= edges / (2*(i-4)*5)
-        print edgesRate
         continue
 
-    print edgesRate
 
     ranNumMat=array([0,0,0,0,0])
 
-    j=0
+    j = 0
 
-    while j<5:
+    while j < 5:
 
-        ranNumber=random.uniform(0, 1)
+        ranNumber = random.uniform(0, 1)
 
         rate=ranNumber
 
@@ -74,9 +75,6 @@ for i in range(5,100):
 
 
 
-
-    print ranNumMat
-
     for j in range (0,5):
 
         x=int(i)
@@ -102,3 +100,18 @@ print ("datamat_________________________________________________________________
 
 print dataMat
 
+
+
+kmat=zeros(10000)
+klog=zeros(10000)
+for i in range (0,10000):
+    kmat [edges[i]]=kmat [edges[i]]+1
+kmat=kmat/10000
+for i in range (2,10000):
+    klog[i]=math.log(i,10)
+n = 10000
+X = klog
+Y = kmat
+
+pylab.scatter(X,Y)
+pylab.show()
